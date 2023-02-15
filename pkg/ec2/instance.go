@@ -151,9 +151,10 @@ func (f *instanceFinder) findSSMManagedInstances() ([]ssmTypes.InstanceInformati
 		Key:    aws.String("PingStatus"),
 		Values: []string{"Online"},
 	}
+	results = int32(50)
 	input := &ssm.DescribeInstanceInformationInput{
 		Filters:    []ssmTypes.InstanceInformationStringFilter{onlineFilter},
-		MaxResults: 50,
+		MaxResults: &results,
 	}
 
 	p := ssm.NewDescribeInstanceInformationPaginator(f.ssmClient, input)

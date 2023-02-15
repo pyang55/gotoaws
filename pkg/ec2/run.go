@@ -31,10 +31,11 @@ func NewCommandRunner(cfg *config.Config, inst *Instance, command []string) (*Co
 		docName = "AWS-RunPowerShellScript"
 	}
 
+	timeOutSeconds := int32(2)
 	input := &ssm.SendCommandInput{
 		DocumentName:   &docName,
 		InstanceIds:    []string{inst.ID},
-		TimeoutSeconds: int32(60), // 60 seconds
+		TimeoutSeconds: &timeOutSeconds, // 60 seconds
 		CloudWatchOutputConfig: &types.CloudWatchOutputConfig{
 			CloudWatchOutputEnabled: true,
 		},
