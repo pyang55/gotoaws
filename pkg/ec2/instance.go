@@ -151,7 +151,7 @@ func (f *instanceFinder) findSSMManagedInstances() ([]ssmTypes.InstanceInformati
 		Key:    aws.String("PingStatus"),
 		Values: []string{"Online"},
 	}
-	results = int32(50)
+	results := int32(50)
 	input := &ssm.DescribeInstanceInformationInput{
 		Filters:    []ssmTypes.InstanceInformationStringFilter{onlineFilter},
 		MaxResults: &results,
